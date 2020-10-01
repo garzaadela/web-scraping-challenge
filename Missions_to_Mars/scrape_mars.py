@@ -4,11 +4,11 @@ from bs4 import BeautifulSoup as soup
 import pandas as pd
 import datetime as dt
 def scrape_all():
-    # Initiate headless driver for deployment
+     
     executable_path = {'executable_path': 'chromedriver.exe'}
     browser = Browser('chrome', **executable_path, headless=False)
     news_title, news_paragraph = mars_news(browser)
-    # Run all scraping functions and store results in a dictionary
+     
     data = {
         "news_title": news_title,
         "news_paragraph": news_paragraph,
@@ -21,12 +21,12 @@ def scrape_all():
     return data
 def mars_news(browser):
     # Scrape Mars News
-    # Visit the mars nasa news site
+    
     url = 'https://mars.nasa.gov/news/'
     browser.visit(url)
-    # Optional delay for loading the page
+    # Delay for loading the page
     browser.is_element_present_by_css("ul.item_list li.slide", wait_time=1)
-    # Convert the browser html to a soup object and then quit the browser
+    
     html = browser.html
     news_soup = soup(html, 'html.parser')
     # Add try/except for error handling
@@ -72,8 +72,8 @@ def mars_facts():
     # Assign columns and set index of dataframe
     df.columns=['Description', 'Mars']
     df.set_index('Description', inplace=True)
-    # Convert dataframe into HTML format, add bootstrap
+     
     return df.to_html(classes="table table-striped")
 if __name__ == "__main__":
-    # If running as script, print scraped data
+     
     print(scrape_all())
