@@ -25,7 +25,7 @@ def mars_news(browser):
 
     html = browser.html
     soup = bs(html, 'html.parser')
-
+   
     news_title_div = soup.find('div', class_='list_text').find('div', class_='content_title')
     news_title = news_title_div.get_text()
     news_title
